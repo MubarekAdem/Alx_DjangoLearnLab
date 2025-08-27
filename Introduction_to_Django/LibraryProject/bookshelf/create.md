@@ -1,6 +1,4 @@
-# Create Operation
 
-```python
 from bookshelf.models import Book
 
 # Create a Book instance
