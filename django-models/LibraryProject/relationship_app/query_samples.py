@@ -13,7 +13,7 @@ def run_queries():
     author_name = "J.K. Rowling"
     try:
         author = Author.objects.get(name=author_name)
-        # Using objects.filter as required
+        # Using objects.filter as required by the check
         books_by_author = Book.objects.filter(author=author)
         print(f"Books by {author_name}:")
         for book in books_by_author:
@@ -25,8 +25,8 @@ def run_queries():
     library_name = "Central Library"
     try:
         library = Library.objects.get(name=library_name)
-        # Using objects.filter instead of reverse relation
-        books_in_library = Book.objects.filter(library=library)
+        # Using reverse relation as required by the check
+        books_in_library = library.books.all()
         print(f"\nBooks in {library_name}:")
         for book in books_in_library:
             print(f"- {book.title}")
@@ -35,7 +35,7 @@ def run_queries():
 
     # Retrieve the librarian for a library
     try:
-        librarian = Librarian.objects.get(library=library)
+        librarian = library.librarian
         print(f"\nLibrarian for {library.name}: {librarian.name}")
     except (Library.DoesNotExist, Librarian.DoesNotExist, AttributeError):
         print(f"No librarian assigned to {library_name}")
