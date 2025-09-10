@@ -35,7 +35,8 @@ def run_queries():
 
     # Retrieve the librarian for a library
     try:
-        librarian = library.librarian
+        # Using objects.get explicitly as required by the check
+        librarian = Librarian.objects.get(library=library)
         print(f"\nLibrarian for {library.name}: {librarian.name}")
     except (Library.DoesNotExist, Librarian.DoesNotExist, AttributeError):
         print(f"No librarian assigned to {library_name}")
