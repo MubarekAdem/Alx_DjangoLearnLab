@@ -7,6 +7,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegisterForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout  # Must include login explicitly
+from django.contrib.auth.forms import UserCreationForm  # Must be present
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import RegisterForm
+from .models import Book, Library
+from django.views.generic.detail import DetailView
 
 # Registration view
 def register_view(request):
