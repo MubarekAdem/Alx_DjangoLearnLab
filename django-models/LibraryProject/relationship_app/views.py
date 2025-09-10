@@ -1,12 +1,3 @@
-from django.shortcuts import render
-from django.views.generic import DetailView
-from django.views.generic.detail import DetailView
-from .models import Book, Library  # Import both Book and Library
-from .models import Library
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import RegisterForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout  # Must include login explicitly
 from django.contrib.auth.forms import UserCreationForm  # Must be present
