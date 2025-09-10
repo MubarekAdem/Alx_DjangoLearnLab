@@ -7,12 +7,12 @@ from django.contrib.auth.forms import AuthenticationForm
 # Registration view
 def register_view(request):
     if request.method == "POST":
-        form = RegisterForm(request.POST)
+        form = UserCreationForm(request.POST)  # <- use UserCreationForm() here
         if form.is_valid():
             form.save()
             return redirect("login")
     else:
-        form = RegisterForm()
+        form = UserCreationForm()  # <- use UserCreationForm() here
     return render(request, "relationship_app/register.html", {"form": form})
 
 # Login view
