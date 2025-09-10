@@ -3,11 +3,25 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
-
-
+from django.contrib.auth.decorators import permission_required
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 
+
+# --- Book permission-protected views ---
+
+@permission_required('relationship_app.can_add_book')
+def add_book(request):
+    return HttpResponse("You have permission to add a book.")
+
+@permission_required('relationship_app.can_change_book')
+def edit_book(request, book_id):
+    return HttpResponse(f"You have permission to edit book with id {book_id}.")
+
+@permission_required('relationship_app.can_delete_book')
+def delete_book(request, book_id):
+    return HttpResponse(f"You have permission to delete book with id {book_id}.")
 # Helpers to check roles
 def is_admin(user):
     return hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
